@@ -4,21 +4,45 @@ using UnityEngine;
 
 public class PlayerBrain : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
-    public float m_Speed;
+    public float Speed;
+    bool MoveForward;
+    bool firstTouch;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (MoveForward)
         {
-            //Move the Rigidbody forwards constantly at speed you define (the blue arrow axis in Scene view)
-            m_Rigidbody.velocity = transform.forward * m_Speed;
+            transform.Translate(Vector3.forward*Time.deltaTime*Speed);
+        }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("touched");
+            if (!firstTouch)
+            {
+                firstTouch = true;
+                animator.SetBool("Run",true);
+                MoveForward = true;
+            }
+            if (!MoveForward)
+            {
+                MoveForward = true;
+                animator.SetBool("Run", true);
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (firstTouch)
+            {
+                MoveForward = false;
+                animator.SetBool("Run", false);
+            }
         }
     }
 }
