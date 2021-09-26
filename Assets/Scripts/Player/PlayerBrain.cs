@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerBrain : MonoBehaviour
 {
     public float Speed;
-    bool MoveForward;
+    public bool MoveForward;
     bool MoveBack;
+    bool isPlugged;
     bool firstTouch;
     public Animator animator;
     // Start is called before the first frame update
@@ -17,38 +18,41 @@ public class PlayerBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MoveForward&& !MoveBack)
+        if (!isPlugged)
         {
-            transform.Translate(Vector3.forward*Time.deltaTime*Speed);
-        }
-        if (MoveBack)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * -Speed);
-        }
+            if (MoveForward && !MoveBack)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * Speed);
+            }
+            if (MoveBack)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * -Speed);
+            }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("touched");
-            if (!firstTouch)
+            if (Input.GetMouseButtonDown(0))
             {
-                firstTouch = true;
-                animator.SetBool("Run",true);
-                MoveForward = true;
+                if (!firstTouch)
+                {
+                    firstTouch = true;
+                    animator.SetBool("Run", true);
+                    MoveForward = true;
+                }
+                if (!MoveForward)
+                {
+                    MoveForward = true;
+                    animator.SetBool("Run", true);
+                }
             }
-            if (!MoveForward)
+            if (Input.GetMouseButtonUp(0))
             {
-                MoveForward = true;
-                animator.SetBool("Run", true);
+                if (firstTouch)
+                {
+                    MoveForward = false;
+                    animator.SetBool("Run", false);
+                }
             }
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (firstTouch)
-            {
-                MoveForward = false;
-                animator.SetBool("Run", false);
-            }
-        }
+        
     }
     public void Hit()
     {
@@ -60,5 +64,10 @@ public class PlayerBrain : MonoBehaviour
         MoveBack = true;
         yield return new WaitForSeconds(1f);
         MoveBack = false;
+    }
+    public void Plugged(GameObject Plug)
+    {
+        isPlugged = true;
+        transform.parent = Plug.transform;
     }
 }
