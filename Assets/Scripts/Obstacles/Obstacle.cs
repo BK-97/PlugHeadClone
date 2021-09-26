@@ -8,7 +8,7 @@ public class Obstacle : MonoBehaviour
     {
         if (other.GetComponent<PlayerBrain>())
         {
-
+            other.GetComponent<PlayerBrain>().Hit();
         }
     }
 }

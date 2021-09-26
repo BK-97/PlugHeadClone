@@ -135,6 +135,18 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8592876449704432112, guid: 6b5d591dbb72ac04a80d42bbb710cb7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -231,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91834404bae9f1d4891b5560ab8abe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 10
   animator: {fileID: 90429060}
 --- !u!4 &90429059 stripped
 Transform:
@@ -976,18 +988,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345039161911285122, guid: 479c10f45dc785546bd10c2230d2d175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1141,18 +1141,6 @@ PrefabInstance:
     - target: {fileID: 7007746961113871812, guid: e236d8cef42d03c4e9cb0b1ed5bb6f6f, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007746961113871812, guid: e236d8cef42d03c4e9cb0b1ed5bb6f6f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007746961113871812, guid: e236d8cef42d03c4e9cb0b1ed5bb6f6f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7007746961113871812, guid: e236d8cef42d03c4e9cb0b1ed5bb6f6f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7007746961113871812, guid: e236d8cef42d03c4e9cb0b1ed5bb6f6f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 695865466142382156}
   - component: {fileID: 8360076341337994951}
   - component: {fileID: 4034877718075476435}
+  - component: {fileID: 2776315792190206144}
+  - component: {fileID: 8217436545369971178}
   m_Layer: 0
   m_Name: Obstacle 2.002
   m_TagString: Untagged
@@ -55,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +82,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2776315792190206144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785965727409908157}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.74259704, y: 0.8130822, z: 0.19941501}
+  m_Center: {x: 0.00000023841858, y: -0.097199425, z: -0.00000048428774}
+--- !u!114 &8217436545369971178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785965727409908157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5de1c933f6917459212e23db5e0755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3438957857848151155
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +163,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -158,6 +188,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4645515504845089995
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +245,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -238,6 +270,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7641293651057028990
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +282,7 @@ GameObject:
   - component: {fileID: 7007746961113871812}
   - component: {fileID: 7406800460945882355}
   m_Layer: 0
-  m_Name: Obstacle-2
+  m_Name: Swing-Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +297,7 @@ Transform:
   m_GameObject: {fileID: 7641293651057028990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4284715333084286490}
   - {fileID: 8507121871090282444}

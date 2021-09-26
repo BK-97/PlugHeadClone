@@ -6,6 +6,7 @@ public class PlayerBrain : MonoBehaviour
 {
     public float Speed;
     bool MoveForward;
+    bool MoveBack;
     bool firstTouch;
     public Animator animator;
     // Start is called before the first frame update
@@ -16,11 +17,15 @@ public class PlayerBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MoveForward)
+        if (MoveForward&& !MoveBack)
         {
             transform.Translate(Vector3.forward*Time.deltaTime*Speed);
         }
-        
+        if (MoveBack)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * -Speed);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("touched");
@@ -44,5 +49,16 @@ public class PlayerBrain : MonoBehaviour
                 animator.SetBool("Run", false);
             }
         }
+    }
+    public void Hit()
+    {
+        StartCoroutine(GoBackCO());
+        
+    }
+    IEnumerator GoBackCO()
+    {
+        MoveBack = true;
+        yield return new WaitForSeconds(1f);
+        MoveBack = false;
     }
 }
