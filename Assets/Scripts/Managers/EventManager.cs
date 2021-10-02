@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public static class EventManager 
-{ 
-
+{
+    public static UnityEvent OnUnplugCharacter = new UnityEvent();
 }
 
 public class IntEvent : UnityEvent<int> { }

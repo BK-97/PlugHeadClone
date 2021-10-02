@@ -6,15 +6,20 @@ public class PlayerBrain : MonoBehaviour
 {
     public float Speed;
     public bool MoveForward;
-    bool MoveBack;
+    public bool MoveBack;
     bool isPlugged;
     bool firstTouch;
     public Animator animator;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
+    private void OnEnable()
+    {
+        EventManager.OnUnplugCharacter.AddListener(UnPlugged);
+    }
+    private void OnDisable()
+    {
+        EventManager.OnUnplugCharacter.RemoveListener(UnPlugged);
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -62,12 +67,21 @@ public class PlayerBrain : MonoBehaviour
     IEnumerator GoBackCO()
     {
         MoveBack = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         MoveBack = false;
     }
     public void Plugged(GameObject Plug)
     {
+        MoveForward = false;
         isPlugged = true;
         transform.parent = Plug.transform;
+    }
+    public void UnPlugged()
+    {
+        transform.parent = null;
+        animator.SetBool("Run", false);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.position = new Vector3(transform.position.x,0,transform.position.z+.5f);
+        isPlugged = false;
     }
 }

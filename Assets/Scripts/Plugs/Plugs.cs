@@ -12,11 +12,16 @@ public class Plugs : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerBrain>().MoveForward)
+        if (other.gameObject.GetComponent<PlayerBrain>())
         {
-            Debug.Log("trigger");
+            
             other.gameObject.GetComponent<PlayerBrain>().Plugged(Plug);
             animator.SetTrigger("Plugged");
+
         }
+    }
+    public void AnimationEnd()
+    {
+        EventManager.OnUnplugCharacter.Invoke();
     }
 }
