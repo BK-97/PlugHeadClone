@@ -75,12 +75,14 @@ public class PlayerBrain : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         MoveBack = false;
     }
-    public void Plugged(GameObject Plug)
+    bool UpPlug;
+    public void Plugged(GameObject Plug,bool Up)
     {
         MoveForward = false;
         MoveBack = false;
         isPlugged = true;
         transform.parent = Plug.transform;
+        UpPlug = Up;
     }
     public void UnPlugged()
     {
@@ -92,6 +94,10 @@ public class PlayerBrain : MonoBehaviour
     }
     IEnumerator WaitUnPlug()
     {
+        if (UpPlug)
+        {
+            transform.DOMove(new Vector3(transform.position.x,transform.position.y+0.25f,transform.position.z+2f),0.5f);
+        }
         MoveForward = true;
         Speed = 2f;
         yield return new WaitForSeconds(1f);

@@ -19,7 +19,7 @@ public class Plugs : MonoBehaviour
             if (!plugged)
             {
                 plugged = true;
-                other.gameObject.GetComponent<PlayerBrain>().Plugged(Plug);
+                other.gameObject.GetComponent<PlayerBrain>().Plugged(Plug,Up);
                 if (!Up)
                     animator.SetTrigger("Plugged");
                 else
