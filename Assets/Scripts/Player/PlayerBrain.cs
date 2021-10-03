@@ -123,7 +123,7 @@ public class PlayerBrain : MonoBehaviour
         Speed = 2f;
         yield return new WaitForSeconds(1f);
         puppetMasterParent.GetComponentInChildren<RootMotion.Dynamics.PuppetMaster>().pinWeight = 0.78f;
-        Speed = 10f;
+        Speed = 8f;
         MoveForward = false;
         animator.SetBool("Run", false);
         isPlugged = false;
