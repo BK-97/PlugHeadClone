@@ -8,9 +8,11 @@ public class PlayerBrain : MonoBehaviour
     public float Speed;
     public bool MoveForward;
     public bool MoveBack;
+    private int health=3;
     bool isPlugged;
     bool firstTouch;
     bool FinalSession;
+    bool isDead;
     public Animator animator;
     Transform puppetMasterParent;
     private void OnEnable()
@@ -29,7 +31,7 @@ public class PlayerBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!FinalSession)
+        if (!FinalSession&& !isDead)
         {
             if (MoveForward && !MoveBack)
             {
@@ -69,8 +71,24 @@ public class PlayerBrain : MonoBehaviour
     }
     public void Hit()
     {
-        StartCoroutine(GoBackCO());
+        health--;
+        if(health==0)
+        {
+            isDead = true;
+            animator.SetBool("Run", false);
+            animator.SetTrigger("Dead");
+            transform.DOMove(new Vector3(transform.position.x,transform.position.y-0.25f,transform.position.z-1f),1f);
+            StartCoroutine(WaitDeadCO());
+        }
+        else
+            StartCoroutine(GoBackCO());
         
+    }
+    IEnumerator WaitDeadCO()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.CompeleteStage(false);
+
     }
     IEnumerator GoBackCO()
     {

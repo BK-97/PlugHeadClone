@@ -26,7 +26,7 @@ public class Plugs : MonoBehaviour
                 else
                     animator.SetTrigger("PluggedUp");
             }
-            if (FinishPlug)
+            if (!plugged && FinishPlug)
             {
                 plugged = true;
                 other.gameObject.GetComponent<PlayerBrain>().FinishPlug(Plug);

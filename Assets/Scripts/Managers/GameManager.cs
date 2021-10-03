@@ -17,10 +17,6 @@ public class GameManager : Singleton<GameManager>
     private bool isGameStarted;
     public bool IsGameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
 
-    private bool isStageCompleted;
-    public bool IsStageCompleted { get { return isStageCompleted; } set { isStageCompleted = value; } }
-
-
     public void StartGame()
     {
         if (isGameStarted)
@@ -42,13 +38,8 @@ public class GameManager : Singleton<GameManager>
         if (!LevelManager.Instance.IsLevelStarted)
             return;
 
-        if (IsStageCompleted == true)
-            return;
-
         if (value)
             OnStageSuccess.Invoke();
         else OnStageFail.Invoke();
-
-        IsStageCompleted = true;
     }
 }

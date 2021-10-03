@@ -10,28 +10,28 @@ public class SceneController : Singleton<SceneController>
 
     public void LoadScene(string level)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(level, LoadSceneMode.Additive);
         OnSceneLoaded.Invoke();
     }
     public void RestartLevel(string level)
     {
-        SceneManager.LoadScene(level);
-        OnSceneLoaded.Invoke();
-
+        StartCoroutine(WaitSceneOpenCO(level));
     }
     public void LoadNextLevel(string level)
     {
-        SceneManager.LoadScene(level);
+        SceneManager.LoadScene(level, LoadSceneMode.Additive);
         OnSceneLoaded.Invoke();
-    }
-    public void LoadPreviousLevel(string level)
-    {
-        SceneManager.LoadScene(level);
-        OnSceneLoaded.Invoke();
-
     }
     public void UnLoadScene(string level)
     {
         SceneManager.UnloadSceneAsync(level);
+    }
+    IEnumerator WaitSceneOpenCO(string level)
+    {
+        SceneManager.UnloadSceneAsync(level);
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(level, LoadSceneMode.Additive);
+        OnSceneLoaded.Invoke();
+
     }
 }

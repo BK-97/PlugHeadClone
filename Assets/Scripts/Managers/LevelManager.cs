@@ -13,7 +13,7 @@ public class LevelManager : Singleton<LevelManager>
     [HideInInspector]
     bool isLevelStarted;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int LevelIndex;
     public bool IsLevelStarted { get { return isLevelStarted; } set { isLevelStarted = value; } }
     private void Start()
@@ -49,6 +49,8 @@ public class LevelManager : Singleton<LevelManager>
     {
         LevelFinish();
         SceneController.Instance.UnLoadScene("level" + LevelIndex);
+        if (LevelIndex == 2)
+            LevelIndex = 0;
         LevelIndex++;
         SceneController.Instance.LoadScene("level" + LevelIndex);
     }
