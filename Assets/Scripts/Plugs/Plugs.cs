@@ -6,7 +6,8 @@ public class Plugs : MonoBehaviour
 {
     Animator animator;
     public GameObject Plug;
-    public bool Up;
+    public bool UpPlug;
+    public bool FinishPlug;
     bool plugged;
     private void Start()
     {
@@ -16,14 +17,21 @@ public class Plugs : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerBrain>())
         {
-            if (!plugged)
+            if (!plugged&&!FinishPlug)
             {
                 plugged = true;
-                other.gameObject.GetComponent<PlayerBrain>().Plugged(Plug,Up);
-                if (!Up)
+                other.gameObject.GetComponent<PlayerBrain>().Plugged(Plug,UpPlug);
+                if (!UpPlug)
                     animator.SetTrigger("Plugged");
                 else
                     animator.SetTrigger("PluggedUp");
+            }
+            if (FinishPlug)
+            {
+                plugged = true;
+                other.gameObject.GetComponent<PlayerBrain>().FinishPlug(Plug);
+                animator.SetTrigger("FinishPlug");
+
             }
         }
     }

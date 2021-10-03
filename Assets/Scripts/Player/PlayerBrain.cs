@@ -10,6 +10,7 @@ public class PlayerBrain : MonoBehaviour
     public bool MoveBack;
     bool isPlugged;
     bool firstTouch;
+    bool FinalSession;
     public Animator animator;
     Transform puppetMasterParent;
     private void OnEnable()
@@ -28,37 +29,39 @@ public class PlayerBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (MoveForward && !MoveBack)
+        if (!FinalSession)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * Speed);
-        }
-        if (MoveBack)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * -Speed);
-        }
-        if (!isPlugged)
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (MoveForward && !MoveBack)
             {
-                if (!firstTouch)
-                {
-                    firstTouch = true;
-                    animator.SetBool("Run", true);
-                    MoveForward = true;
-                }
-                if (!MoveForward)
-                {
-                    MoveForward = true;
-                    animator.SetBool("Run", true);
-                }
+                transform.Translate(Vector3.forward * Time.deltaTime * Speed);
             }
-            if (Input.GetMouseButtonUp(0))
+            if (MoveBack)
             {
-                if (firstTouch)
+                transform.Translate(Vector3.forward * Time.deltaTime * -Speed);
+            }
+            if (!isPlugged)
+            {
+                if (Input.GetMouseButtonDown(0))
                 {
-                    MoveForward = false;
-                    animator.SetBool("Run", false);
+                    if (!firstTouch)
+                    {
+                        firstTouch = true;
+                        animator.SetBool("Run", true);
+                        MoveForward = true;
+                    }
+                    if (!MoveForward)
+                    {
+                        MoveForward = true;
+                        animator.SetBool("Run", true);
+                    }
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (firstTouch)
+                    {
+                        MoveForward = false;
+                        animator.SetBool("Run", false);
+                    }
                 }
             }
         }
@@ -107,5 +110,28 @@ public class PlayerBrain : MonoBehaviour
         animator.SetBool("Run", false);
         isPlugged = false;
 
+    }
+    public void FinishTrigger(GameObject FinishPlug)
+    {
+        FinalSession = true;
+        GetComponent<Rigidbody>().useGravity = false;
+        animator.SetBool("Run", true);
+
+        transform.DOMove(new Vector3(FinishPlug.transform.position.x,transform.position.y,FinishPlug.transform.position.z),1f);
+    }
+    public void FinishPlug(GameObject FinalPlug)
+    {
+        DOTween.KillAll();
+        MoveForward = false;
+        MoveBack = false;
+        isPlugged = true;
+        transform.parent = FinalPlug.transform;
+        StartCoroutine(FinishCO());
+        
+    }
+    IEnumerator FinishCO()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.CompeleteStage(true);
     }
 }
